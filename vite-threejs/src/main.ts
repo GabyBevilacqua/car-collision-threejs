@@ -6,7 +6,22 @@ import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
 import RAPIER from '@dimforge/rapier3d-compat'
 import RapierDebugRenderer from './RapierDebugRenderer'
 import Car from './Car'
-//import Box from './Box'
+import Box from './Box'
+
+const menuPanel = document.getElementById('menuPanel');
+const startButton = document.getElementById('startButton');
+if (startButton && menuPanel) {
+  startButton.addEventListener('click', () => {
+    menuPanel.style.display = 'none';
+  });
+}
+
+// Mostrar el panel de menú cuando se libera el pointer lock (Escape)
+document.addEventListener('pointerlockchange', () => {
+  if (document.pointerLockElement !== renderer.domElement && menuPanel) {
+    menuPanel.style.display = 'block';
+  }
+});
 
 await RAPIER.init() // This line is only needed if using the compat version
 const gravity = new RAPIER.Vector3(0.0, -9.81, 0.0)
@@ -114,12 +129,12 @@ world.createCollider(floorShape, floorBody)
 const car = new Car(keyMap, pivot)
 await car.init(scene, world, [0, 1, 0])
 
-// const boxes: Box[] = []
-// for (let x = 0; x < 8; x += 1) {
-//   for (let y = 0; y < 8; y += 1) {
-//     boxes.push(new Box(scene, world, [(x - 4) * 1.2, y + 1, -20]))
-//   }
-// }
+const boxes: Box[] = []
+for (let x = 0; x < 8; x += 1) {
+  for (let y = 0; y < 8; y += 1) {
+    boxes.push(new Box(scene, world, [(x - 4) * 1.2, y + 1, -20]))
+  }
+}
 
 const stats = new Stats()
 document.body.appendChild(stats.dom)
@@ -144,7 +159,7 @@ function animate() {
 
   car.update(delta)
 
-  //boxes.forEach((b) => b.update())
+  boxes.forEach((b) => b.update())
 
   rapierDebugRenderer.update()
 
