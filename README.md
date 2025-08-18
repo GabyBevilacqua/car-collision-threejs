@@ -1,29 +1,40 @@
-# Proyecto Three.js con Vite y TypeScript
+# 🚗 Proyecto 3D con Three.js + Rapier  
 
-Este proyecto integra varios ejercicios y prácticas realizadas con **Three.js**, empleando **Vite** como *bundler* y **TypeScript** para un desarrollo tipado y escalable.  
-Incluye diferentes escenarios 3D con navegación entre páginas, control de personajes, animaciones y carga optimizada de modelos GLTF.
+Este proyecto es una **demo interactiva en 3D** desarrollada con [Three.js](https://threejs.org/) y [Rapier](https://rapier.rs/), que incluye:  
 
-## 🚀 Características
+- Un **coche en 3D** controlable con teclado.  
+- **Cámara en tercera persona** tipo *follow cam* (sigue al coche con suavidad).  
+- **Simulación física** con Rapier (colisiones, gravedad, movimiento).  
+- **Entorno HDRI** para iluminación realista.  
+- **Interfaz de depuración** con [lil-gui](https://lil-gui.georgealways.com/) para modificar parámetros de física.  
+- **Estadísticas de rendimiento** con *stats.js*.  
+- Renderizado en **WebGL**.  
 
-- **Three.js**: escenas, luces, sombras, materiales y cámaras.
-- **OrbitControls**: navegación e interacción fluida con la escena.
-- **GLTFLoader y DRACOLoader**: carga eficiente de modelos 3D comprimidos.
-- **RGBELoader**: uso de texturas HDRI para iluminación ambiental realista.
-- **JEASINGS**: curvas de animación personalizadas.
-- **Raycaster**: detección de clics y colisiones.
-- **Stats**: panel de rendimiento en tiempo real.
-- **Animación de personajes** con `AnimationMixer`, múltiples acciones (`idle`, `walk`, `run`, `jump`, `pose`).
-- **Control por teclado** para mover y animar el personaje.
-- **Grid dinámico** con interpolación (*lerp*).
+---
 
+## 📦 Tecnologías utilizadas  
 
-## 🛠 Tecnologías utilizadas
+- [Three.js](https://threejs.org/) → motor gráfico 3D.  
+- [Rapier](https://rapier.rs/docs/user_guides/javascript/) → motor de físicas en WebAssembly.  
+- [GLTFLoader](https://threejs.org/docs/#examples/en/loaders/GLTFLoader) → carga del modelo 3D del coche.  
+- [lil-gui](https://lil-gui.georgealways.com/) → panel de control para depuración.  
+- [Stats.js](https://github.com/mrdoob/stats.js/) → monitor de FPS.  
 
-- [Three.js](https://threejs.org/)
-- [Vite](https://vitejs.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [JEASINGS](https://www.npmjs.com/package/jeasings)
-- [GSAP](https://greensock.com/gsap/) 
+---
+
+## 🎮 Controles
+
+- W / S → Acelerar / frenar.
+
+- A / D → Girar izquierda / derecha.
+
+- Mouse → Rotar cámara.
+
+- Rueda del ratón → Acercar / alejar cámara.
+
+- Click en pantalla → Captura del puntero (para mover la cámara libremente).
+
+---
 
 ## 📦 Instalación y ejecución
 
