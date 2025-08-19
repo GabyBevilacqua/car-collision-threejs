@@ -35,14 +35,15 @@ const gridHelper = new THREE.GridHelper(200, 100, 0x222222, 0x222222)
 gridHelper.position.y = -0.5
 scene.add(gridHelper)
 
-await new RGBELoader().loadAsync('img/venice_sunset_1k.hdr').then((texture) => {
+await new RGBELoader().loadAsync('img/rogland_clear_night_2k.hdr').then((texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping
   scene.environment = texture
+  scene.background = texture
   scene.environmentIntensity = 0.1 // new in Three r163. https://threejs.org/docs/#api/en/scenes/Scene.environmentIntensity
 })
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100)
-camera.position.set(0, 0, 4)
+camera.position.set(0, 3, 8)
 
 const renderer = new THREE.WebGLRenderer({ antialias: true })
 renderer.setSize(window.innerWidth, window.innerHeight)
@@ -126,6 +127,16 @@ const floorBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslat
 const floorShape = RAPIER.ColliderDesc.cuboid(100, 0.5, 100) //.setCollisionGroups(65542)
 world.createCollider(floorShape, floorBody)
 
+//para poner el florr metalizado hay que cambiar el tipo de mesh material 
+// const floorMesh = new THREE.Mesh(
+//   new THREE.BoxGeometry(200, 1, 200),
+//   new THREE.MeshStandardMaterial({
+//     color: 0x888888,      // gris metálico, puedes cambiar el color si quieres
+//     metalness: 1,         // máximo metalizado
+//     roughness: 0.2        // bajo para que se vea brillante
+//   })
+// )
+
 const car = new Car(keyMap, pivot)
 await car.init(scene, world, [0, 1, 0])
 
@@ -133,6 +144,20 @@ const boxes: Box[] = []
 for (let x = 0; x < 8; x += 1) {
   for (let y = 0; y < 8; y += 1) {
     boxes.push(new Box(scene, world, [(x - 4) * 1.2, y + 1, -20]))
+  }
+}
+
+const boxes2: Box[] = []
+for (let x = 0; x < 8; x += 1) {
+  for (let y = 0; y < 8; y += 1) {
+    boxes2.push(new Box(scene, world, [(x + 7) * 1.2, y + 4, -20]))
+  }
+}
+
+const boxes3: Box[] = []
+for (let x = 0; x < 8; x += 1) {
+  for (let y = 0; y < 8; y += 1) {
+    boxes3.push(new Box(scene, world, [(x - 7) * 1.2, y + 4, 24]))
   }
 }
 
@@ -160,6 +185,8 @@ function animate() {
   car.update(delta)
 
   boxes.forEach((b) => b.update())
+  boxes2.forEach((b) => b.update())
+  boxes3.forEach((b) => b.update())
 
   rapierDebugRenderer.update()
 

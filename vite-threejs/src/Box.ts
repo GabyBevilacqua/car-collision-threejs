@@ -5,7 +5,11 @@ export default class Box {
   dynamicBody: [Object3D, RigidBody]
 
   constructor(scene: Scene, world: World, position: [number, number, number]) {
-    const boxMesh = new Mesh(new BoxGeometry(), new MeshStandardMaterial())
+    const boxMesh = new Mesh(new BoxGeometry(), new MeshStandardMaterial({
+      color: 0x888888,
+      metalness: 5,
+      roughness: 0
+    }))
     boxMesh.castShadow = true
     scene.add(boxMesh)
 

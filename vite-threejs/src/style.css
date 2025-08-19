@@ -11,16 +11,30 @@ body {
   height: 100%;
 }
 
+#infoPanel {
+  position: absolute;
+  margin: 200px 25px;
+  height: 8rem;
+  width: 13rem;
+  background-color: rgba(18, 45, 61, 0.589);
+  border-radius: 1rem;
+  border: 1px solid rgb(212, 212, 212);
+  color: white;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-family: monospace;
+}
+
 #startButton {
   height: 6rem;
   width: 15rem;
-  margin: -50px -125px;
+  margin: -50px -166px;
   position: absolute;
   top: 15%;
   left: 10%;
   font-size: 1rem;
   font-family: monospace;
-  background-color: rgba(127, 208, 255, 0.589);
+  background-color: rgba(18, 45, 61, 0.589);
   border-radius: 1rem;
   border: 1px solid rgb(212, 212, 212);
   cursor: pointer;
