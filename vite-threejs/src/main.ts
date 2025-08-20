@@ -8,6 +8,29 @@ import RapierDebugRenderer from './RapierDebugRenderer'
 import Car from './Car'
 import Box from './Box'
 
+
+const btnUp = document.getElementById('btnUp');
+const btnDown = document.getElementById('btnDown');
+const btnLeft = document.getElementById('btnLeft');
+const btnRight = document.getElementById('btnRight');
+
+if (btnUp) {
+  btnUp.addEventListener('touchstart', () => keyMap['KeyW'] = true);
+  btnUp.addEventListener('touchend', () => keyMap['KeyW'] = false);
+}
+if (btnDown) {
+  btnDown.addEventListener('touchstart', () => keyMap['KeyS'] = true);
+  btnDown.addEventListener('touchend', () => keyMap['KeyS'] = false);
+}
+if (btnLeft) {
+  btnLeft.addEventListener('touchstart', () => keyMap['KeyA'] = true);
+  btnLeft.addEventListener('touchend', () => keyMap['KeyA'] = false);
+}
+if (btnRight) {
+  btnRight.addEventListener('touchstart', () => keyMap['KeyD'] = true);
+  btnRight.addEventListener('touchend', () => keyMap['KeyD'] = false);
+}
+
 const menuPanel = document.getElementById('menuPanel');
 const startButton = document.getElementById('startButton');
 if (startButton && menuPanel) {
