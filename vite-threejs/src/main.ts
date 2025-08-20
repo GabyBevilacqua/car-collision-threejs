@@ -150,16 +150,48 @@ for (let x = 0; x < 8; x += 1) {
 const boxes2: Box[] = []
 for (let x = 0; x < 8; x += 1) {
   for (let y = 0; y < 8; y += 1) {
-    boxes2.push(new Box(scene, world, [(x + 7) * 1.2, y + 4, -20]))
+    boxes2.push(new Box(scene, world, [(x + 8) * 1.2, y + 1, -40]))
   }
 }
 
 const boxes3: Box[] = []
 for (let x = 0; x < 8; x += 1) {
   for (let y = 0; y < 8; y += 1) {
-    boxes3.push(new Box(scene, world, [(x - 7) * 1.2, y + 4, 24]))
+    boxes3.push(new Box(scene, world, [(x - 7) * 1.2, y + 1, 34]))
   }
 }
+
+// al cargar estas me da problemas de memoria al ser demasiadas
+// const boxes4: Box[] = []
+// for (let x = 0; x < 8; x += 1) {
+//   for (let y = 0; y < 8; y += 1) {
+//     boxes4.push(new Box(scene, world, [(x + 10) * 1.2, y + 1, 34]))
+//   }
+// }
+
+// Ejemplo de InstancedMesh para renderizar muchos cubos sin física
+// const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
+// const boxMaterial = new THREE.MeshStandardMaterial({
+//   color: 0xff0000,
+//   metalness: 1,
+//   roughness: 0.2
+// })
+// const instanceCount = 8 * 8 * 8 // 512 cubos
+// const instancedMesh = new THREE.InstancedMesh(boxGeometry, boxMaterial, instanceCount)
+// instancedMesh.castShadow = true
+// scene.add(instancedMesh)
+
+// let i = 0
+// for (let x = 0; x < 8; x++) {
+//   for (let y = 0; y < 8; y++) {
+//     for (let z = 0; z < 8; z++) {
+//       const matrix = new THREE.Matrix4()
+//       matrix.setPosition(x * 2, y * 2, z * 2)
+//       instancedMesh.setMatrixAt(i, matrix)
+//       i++
+//     }
+//   }
+// }
 
 const stats = new Stats()
 document.body.appendChild(stats.dom)
@@ -187,6 +219,7 @@ function animate() {
   boxes.forEach((b) => b.update())
   boxes2.forEach((b) => b.update())
   boxes3.forEach((b) => b.update())
+  //boxes4.forEach((b) => b.update())
 
   rapierDebugRenderer.update()
 
