@@ -1,0 +1,7 @@
+{
+  "rootDirectory": "vite-threejs",
+  "builds": [
+    { "src": "vite.config.ts", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
+  ],
+  "outputDirectory": "dist"
+}
